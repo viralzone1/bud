@@ -22,13 +22,17 @@ html, body {
   width: 100%;
   height: 80vh;  /* Ajustado al 80% de la altura de la pantalla */
   background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* VIDEO */
 video {
-  width: 100%;
-  height: 100%;  /* El video se ajustará al 100% del contenedor, que es 80vh */
-  object-fit: cover; /* Mantiene la proporción y cubre el área */
+  width: auto;
+  height: 100%;  /* El video ocupará el 100% de la altura del contenedor */
+  max-width: 100%;  /* Asegura que el video no se desborde en ancho */
+  object-fit: contain;  /* Mantiene el aspecto original del video sin distorsionarlo */
   display: block;
   background: #000;
 }
@@ -120,3 +124,4 @@ video.addEventListener('pause', () => {
 
 </body>
 </html>
+
