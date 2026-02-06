@@ -27,13 +27,11 @@ html, body {
   align-items: center;
 }
 
-/* VIDEO */
 video {
   width: auto;
   height: 100%;
   max-width: 100%;
   object-fit: contain;
-  display: block;
   background: #000;
 }
 
@@ -61,15 +59,23 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 14px 30px;
+  padding: 12px 26px; /* un poco más pequeño */
   background: #00c853;
   color: #fff;
-  border-radius: 30px;
+  border-radius: 28px;
   font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 200, 83, .8);
-  z-index: 9999;
+  font-size: 15px;
   cursor: pointer;
+  z-index: 9999;
+  animation: blink 1.2s infinite;
+}
+
+/* PARPADEO */
+@keyframes blink {
+  0%   { background: #00c853; box-shadow: 0 0 12px #00c853; }
+  33%  { background: #00b0ff; box-shadow: 0 0 12px #00b0ff; }
+  66%  { background: #ffab00; box-shadow: 0 0 12px #ffab00; }
+  100% { background: #00c853; box-shadow: 0 0 12px #00c853; }
 }
 </style>
 </head>
@@ -82,12 +88,10 @@ video {
     <source src="https://vidcool2.org/m40.mp4" type="video/mp4">
   </video>
 
-  <!-- BOTÓN ROJO INTACTO -->
   <button id="playBtn">VER VIDEO</button>
 
 </div>
 
-<!-- BOTÓN VERDE -->
 <div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
@@ -96,12 +100,10 @@ const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
 let pauseAdShown = false;
-let downloadAttempt = 0;
+let downloadStep = 0;
 
-/* BOTÓN ROJO (INTOCABLE) */
+/* BOTÓN ROJO */
 playBtn.addEventListener('click', () => {
-
-  // ADSTERRA
   window.open(
     'https://www.effectivegatecpm.com/gh0ik69ra2?key=6c8fd4808523152879a7e49e58d0eec2',
     '_blank'
@@ -109,46 +111,45 @@ playBtn.addEventListener('click', () => {
 
   playBtn.style.display = 'none';
   video.play();
-
-  // Mostrar botón verde
   downloadBtn.style.display = 'block';
 });
 
-/* BOTÓN VERDE — TODA LA LÓGICA AQUÍ */
+/* BOTÓN VERDE */
 downloadBtn.addEventListener('click', () => {
-  downloadAttempt++;
 
-  // PRIMER CLICK
-  if (downloadAttempt === 1) {
+  // CLICK 1 → DESCARGAR
+  if (downloadStep === 0) {
+    downloadStep = 1;
 
-    // Monetag #1
+    // Monetag LINK A (el que ya usabas)
     window.open('https://otieu.com/4/10536794', '_blank');
 
-    // Feedback honesto
     downloadBtn.textContent = '⏳ Preparando descarga…';
+    downloadBtn.style.animation = 'none';
     downloadBtn.style.background = '#2e7d32';
 
-    // A los 4s cambia estado
     setTimeout(() => {
-      downloadBtn.textContent = '⚠️ Descarga fallida · intentar de nuevo';
+      downloadBtn.textContent = '⚠️ Descarga fallida · intente de nuevo';
       downloadBtn.style.background = '#f9a825';
+      downloadBtn.style.animation = 'blink 1.2s infinite';
     }, 4000);
   }
 
-  // SEGUNDO CLICK
-  else if (downloadAttempt === 2) {
+  // CLICK 2 → INTENTE DE NUEVO
+  else if (downloadStep === 1) {
+    downloadStep = 2;
 
-    // Monetag #2
-    window.open('https://otieu.com/4/10536794', '_blank');
+    // 👉 NUEVO LINK MONETAG
+    window.open('https://otieu.com/4/10576246', '_blank');
 
-    // Estado final (se corta el loop)
     downloadBtn.textContent = '❌ No fue posible generar el enlace';
     downloadBtn.style.background = '#616161';
+    downloadBtn.style.animation = 'none';
     downloadBtn.style.pointerEvents = 'none';
   }
 });
 
-/* PAUSE → MONETAG (UNA VEZ) */
+/* PAUSE → Monetag B */
 video.addEventListener('pause', () => {
   if (!pauseAdShown) {
     pauseAdShown = true;
@@ -159,4 +160,3 @@ video.addEventListener('pause', () => {
 
 </body>
 </html>
-
