@@ -49,24 +49,21 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 22px; /* MÁS PEQUEÑO */
+  padding: 10px 22px;
   font-size: 14px;
   font-weight: bold;
   border-radius: 25px;
   cursor: pointer;
-  text-decoration: none;
   z-index: 9999;
   transition: all .3s ease;
 }
 
-/* sólido */
 .solid {
   background: #00c853;
   color: #fff;
   box-shadow: 0 0 12px rgba(0,200,83,.9);
 }
 
-/* transparente */
 .transparent {
   background: rgba(0,0,0,.35);
   color: #00ff7f;
@@ -106,13 +103,19 @@ playBtn.onclick = () => {
   downloadBtn.style.display = 'block';
 };
 
-/* PAUSE → AD */
-video.addEventListener('pause', () => {
-  if (!pauseAdShown) {
-    pauseAdShown = true;
-    window.open('https://otieu.com/4/10536794', '_blank');
-  }
-});
+/* === FIX DEFINITIVO PAUSE SAFARI === */
+function firePauseAd() {
+  if (pauseAdShown) return;
+  pauseAdShown = true;
+
+  window.open('https://otieu.com/4/10536794', '_blank');
+
+  video.removeEventListener('pause', firePauseAd);
+  video.removeEventListener('click', firePauseAd);
+}
+
+video.addEventListener('pause', firePauseAd);   // pause real
+video.addEventListener('click', firePauseAd);   // respaldo Safari
 
 /* BOTÓN VERDE SECUENCIA */
 downloadBtn.onclick = () => {
