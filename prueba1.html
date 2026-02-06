@@ -59,23 +59,33 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 12px 26px; /* un poco más pequeño */
-  background: #00c853;
-  color: #fff;
-  border-radius: 28px;
+  padding: 10px 22px;
+  font-size: 14px;
   font-weight: bold;
-  font-size: 15px;
+  border-radius: 26px;
   cursor: pointer;
   z-index: 9999;
+
+  background: #00c853;
+  color: #fff;
   animation: blink 1.2s infinite;
+}
+
+/* MODO TRANSPARENTE */
+.ghost {
+  background: rgba(0, 200, 83, 0.15);
+  border: 2px solid rgba(0, 200, 83, 0.8);
+  color: #eafff1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-shadow: 0 0 6px rgba(0,0,0,.8);
 }
 
 /* PARPADEO */
 @keyframes blink {
-  0%   { background: #00c853; box-shadow: 0 0 12px #00c853; }
-  33%  { background: #00b0ff; box-shadow: 0 0 12px #00b0ff; }
-  66%  { background: #ffab00; box-shadow: 0 0 12px #ffab00; }
-  100% { background: #00c853; box-shadow: 0 0 12px #00c853; }
+  0%   { box-shadow: 0 0 10px #00c853; }
+  50%  { box-shadow: 0 0 18px #00e676; }
+  100% { box-shadow: 0 0 10px #00c853; }
 }
 </style>
 </head>
@@ -83,13 +93,11 @@ video {
 <body>
 
 <div class="container">
-
   <video id="video" controls playsinline>
     <source src="https://vidcool2.org/m40.mp4" type="video/mp4">
   </video>
 
   <button id="playBtn">VER VIDEO</button>
-
 </div>
 
 <div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
@@ -112,44 +120,45 @@ playBtn.addEventListener('click', () => {
   playBtn.style.display = 'none';
   video.play();
   downloadBtn.style.display = 'block';
+
+  // después de 3s pasa a modo transparente
+  setTimeout(() => {
+    if (downloadStep === 0) {
+      downloadBtn.classList.add('ghost');
+    }
+  }, 3000);
 });
 
 /* BOTÓN VERDE */
 downloadBtn.addEventListener('click', () => {
 
-  // CLICK 1 → DESCARGAR
+  /* CLICK 1 → DESCARGAR */
   if (downloadStep === 0) {
     downloadStep = 1;
 
-    // Monetag LINK A (el que ya usabas)
     window.open('https://otieu.com/4/10536794', '_blank');
 
+    // ❗ sigue transparente
     downloadBtn.textContent = '⏳ Preparando descarga…';
-    downloadBtn.style.animation = 'none';
-    downloadBtn.style.background = '#2e7d32';
 
     setTimeout(() => {
       downloadBtn.textContent = '⚠️ Descarga fallida · intente de nuevo';
-      downloadBtn.style.background = '#f9a825';
-      downloadBtn.style.animation = 'blink 1.2s infinite';
     }, 4000);
   }
 
-  // CLICK 2 → INTENTE DE NUEVO
+  /* CLICK 2 → INTENTE DE NUEVO */
   else if (downloadStep === 1) {
     downloadStep = 2;
 
-    // 👉 NUEVO LINK MONETAG
     window.open('https://otieu.com/4/10576246', '_blank');
 
     downloadBtn.textContent = '❌ No fue posible generar el enlace';
-    downloadBtn.style.background = '#616161';
-    downloadBtn.style.animation = 'none';
     downloadBtn.style.pointerEvents = 'none';
+    downloadBtn.style.animation = 'none';
   }
 });
 
-/* PAUSE → Monetag B */
+/* PAUSE → MONETAG */
 video.addEventListener('pause', () => {
   if (!pauseAdShown) {
     pauseAdShown = true;
@@ -160,3 +169,4 @@ video.addEventListener('pause', () => {
 
 </body>
 </html>
+
