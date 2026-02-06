@@ -9,12 +9,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
   background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
 }
 
 .container {
@@ -27,18 +23,14 @@ html, body {
 }
 
 video {
-  width: auto;
   height: 100%;
   max-width: 100%;
-  object-fit: contain;
+  background: #000;
 }
 
 /* BOTÓN ROJO */
 #playBtn {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 16px 30px;
   background: #e60000;
   color: #fff;
@@ -57,24 +49,29 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 22px;
+  padding: 10px 22px; /* MÁS PEQUEÑO */
   font-size: 14px;
   font-weight: bold;
-  border-radius: 26px;
+  border-radius: 25px;
   cursor: pointer;
+  text-decoration: none;
   z-index: 9999;
-  background: #00c853;
-  color: #fff;
+  transition: all .3s ease;
 }
 
-/* TRANSPARENTE */
-.ghost {
-  background: rgba(0, 200, 83, 0.18) !important;
-  border: 2px solid rgba(0, 200, 83, 0.9);
-  color: #eafff1;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  text-shadow: 0 0 6px rgba(0,0,0,.9);
+/* sólido */
+.solid {
+  background: #00c853;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0,200,83,.9);
+}
+
+/* transparente */
+.transparent {
+  background: rgba(0,0,0,.35);
+  color: #00ff7f;
+  border: 2px solid #00ff7f;
+  box-shadow: none;
 }
 </style>
 </head>
@@ -88,79 +85,72 @@ video {
   <button id="playBtn">VER VIDEO</button>
 </div>
 
-<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
+<button id="downloadBtn" class="solid">⬇ DESCARGAR VIDEO</button>
 
 <script>
 const playBtn = document.getElementById('playBtn');
 const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
+let pauseAdShown = false;
 let step = 0;
-let timer = null;
 
 /* BOTÓN ROJO */
-playBtn.addEventListener('click', () => {
+playBtn.onclick = () => {
   window.open(
     'https://www.effectivegatecpm.com/gh0ik69ra2?key=6c8fd4808523152879a7e49e58d0eec2',
     '_blank'
   );
-
   playBtn.style.display = 'none';
   video.play();
-
   downloadBtn.style.display = 'block';
-  downloadBtn.classList.remove('ghost');
+};
 
-  setTimeout(() => {
-    if (step === 0) downloadBtn.classList.add('ghost');
-  }, 2500);
-});
-
-/* BOTÓN VERDE */
-downloadBtn.addEventListener('click', () => {
-
-  /* CLICK 1 */
-  if (step === 0) {
-    step = 1;
+/* PAUSE → AD */
+video.addEventListener('pause', () => {
+  if (!pauseAdShown) {
+    pauseAdShown = true;
     window.open('https://otieu.com/4/10536794', '_blank');
-
-    downloadBtn.classList.add('ghost');
-    downloadBtn.textContent = '⏳ Preparando descarga…';
-
-    setTimeout(() => {
-      downloadBtn.textContent = '⚠️ Descarga fallida · intente de nuevo';
-    }, 4000);
-  }
-
-  /* CLICK 2 */
-  else if (step === 1) {
-    step = 2;
-    window.open('https://otieu.com/4/10576246', '_blank');
-    iniciarContador(25);
-  }
-
-  /* CLICK 4 */
-  else if (step === 3) {
-    window.open('https://otieu.com/4/10576303', '_blank');
-    downloadBtn.textContent = '⏳ Procesando…';
-    downloadBtn.style.pointerEvents = 'none';
   }
 });
 
-/* CONTADOR VISIBLE */
-function iniciarContador(segundos) {
-  let restante = segundos;
-  downloadBtn.classList.add('ghost');
-  downloadBtn.textContent = `⏱ Enlace disponible en ${restante}s`;
+/* BOTÓN VERDE SECUENCIA */
+downloadBtn.onclick = () => {
 
-  timer = setInterval(() => {
-    restante--;
-    downloadBtn.textContent = `⏱ Enlace disponible en ${restante}s`;
+  if (step === 0) {
+    window.open('https://otieu.com/4/10576246', '_blank');
+    downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
+    downloadBtn.classList.remove('solid');
+    downloadBtn.classList.add('transparent');
+    step++;
+    return;
+  }
 
-    if (restante <= 0) {
-      clearInterval(timer);
-      step = 3;
-      downloadBtn.textContent = '✅ Enlace listo · click aquí';
+  if (step === 1) {
+    window.open('https://otieu.com/4/10536794', '_blank');
+    startCountdown();
+    step++;
+    return;
+  }
+
+  if (step === 2) {
+    window.open('https://otieu.com/4/10576303', '_blank');
+  }
+};
+
+/* CONTADOR */
+function startCountdown() {
+  let time = 25;
+  downloadBtn.textContent = `⏳ ESPERA ${time}s`;
+
+  const interval = setInterval(() => {
+    time--;
+    downloadBtn.textContent = `⏳ ESPERA ${time}s`;
+
+    if (time <= 0) {
+      clearInterval(interval);
+      downloadBtn.textContent = '✅ ENLACE LISTO · CLICK AQUÍ';
+      step = 2;
     }
   }, 1000);
 }
