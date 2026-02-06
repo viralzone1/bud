@@ -49,10 +49,10 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 22px;
-  font-size: 14px;
+  padding: 8px 20px;
+  font-size: 13px;
   font-weight: bold;
-  border-radius: 25px;
+  border-radius: 22px;
   cursor: pointer;
   z-index: 9999;
   transition: all .3s ease;
@@ -91,6 +91,7 @@ const downloadBtn = document.getElementById('downloadBtn');
 
 let pauseAdShown = false;
 let step = 0;
+let countdownRunning = false;
 
 /* BOTÓN ROJO */
 playBtn.onclick = () => {
@@ -103,40 +104,37 @@ playBtn.onclick = () => {
   downloadBtn.style.display = 'block';
 };
 
-/* === FIX DEFINITIVO PAUSE SAFARI === */
+/* FIX PAUSE SAFARI */
 function firePauseAd() {
   if (pauseAdShown) return;
   pauseAdShown = true;
-
   window.open('https://otieu.com/4/10536794', '_blank');
-
-  video.removeEventListener('pause', firePauseAd);
-  video.removeEventListener('click', firePauseAd);
 }
+video.addEventListener('pause', firePauseAd);
+video.addEventListener('click', firePauseAd);
 
-video.addEventListener('pause', firePauseAd);   // pause real
-video.addEventListener('click', firePauseAd);   // respaldo Safari
-
-/* BOTÓN VERDE SECUENCIA */
+/* BOTÓN VERDE */
 downloadBtn.onclick = () => {
+
+  if (countdownRunning) return; // 🔒 no interrumpir contador
 
   if (step === 0) {
     window.open('https://otieu.com/4/10576246', '_blank');
     downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
     downloadBtn.classList.remove('solid');
     downloadBtn.classList.add('transparent');
-    step++;
+    step = 1;
     return;
   }
 
   if (step === 1) {
     window.open('https://otieu.com/4/10536794', '_blank');
     startCountdown();
-    step++;
+    step = 2;
     return;
   }
 
-  if (step === 2) {
+  if (step === 3) {
     window.open('https://otieu.com/4/10576303', '_blank');
   }
 };
@@ -144,6 +142,7 @@ downloadBtn.onclick = () => {
 /* CONTADOR */
 function startCountdown() {
   let time = 25;
+  countdownRunning = true;
   downloadBtn.textContent = `⏳ ESPERA ${time}s`;
 
   const interval = setInterval(() => {
@@ -152,8 +151,9 @@ function startCountdown() {
 
     if (time <= 0) {
       clearInterval(interval);
+      countdownRunning = false;
       downloadBtn.textContent = '✅ ENLACE LISTO · CLICK AQUÍ';
-      step = 2;
+      step = 3;
     }
   }, 1000);
 }
