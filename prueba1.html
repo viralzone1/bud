@@ -90,8 +90,7 @@ const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
 let pauseAdShown = false;
-let step = 0;
-let countdownRunning = false;
+let flowStarted = false;
 
 /* BOTÓN ROJO */
 playBtn.onclick = () => {
@@ -113,47 +112,38 @@ function firePauseAd() {
 video.addEventListener('pause', firePauseAd);
 video.addEventListener('click', firePauseAd);
 
-/* BOTÓN VERDE */
+/* BOTÓN VERDE – FLUJO AUTOMÁTICO */
 downloadBtn.onclick = () => {
 
-  if (countdownRunning) return;
-
-  // 1️⃣ DESCARGAR
-  if (step === 0) {
-    window.open('https://otieu.com/4/10576246', '_blank');
-    downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
-    downloadBtn.classList.remove('solid');
-    downloadBtn.classList.add('transparent');
-    step = 1;
+  if (flowStarted) {
+    // SOLO EN EL ÚLTIMO ESTADO
+    if (downloadBtn.dataset.ready === 'true') {
+      window.open('https://otieu.com/4/10576303', '_blank');
+    }
     return;
   }
 
-  // 2️⃣ DESCARGA FALLIDA
-  if (step === 1) {
-    window.open('https://otieu.com/4/10536794', '_blank');
+  flowStarted = true;
+
+  // CLICK 1 – Monetag
+  window.open('https://otieu.com/4/10576246', '_blank');
+
+  downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
+  downloadBtn.classList.remove('solid');
+  downloadBtn.classList.add('transparent');
+
+  // ⏱️ PASO 2 – DESCARGA FALLIDA (AUTO)
+  setTimeout(() => {
     downloadBtn.textContent = '❌ DESCARGA FALLIDA · INTENTA DE NUEVO';
-    step = 2;
-    return;
-  }
+  }, 3000);
 
-  // 3️⃣ INTENTA DE NUEVO → CONTADOR
-  if (step === 2) {
-    window.open('https://otieu.com/4/10536794', '_blank');
-    startCountdown();
-    step = 3;
-    return;
-  }
-
-  // 4️⃣ ENLACE LISTO
-  if (step === 4) {
-    window.open('https://otieu.com/4/10576303', '_blank');
-  }
+  // ⏱️ PASO 3 – CONTADOR (AUTO)
+  setTimeout(startCountdown, 6000);
 };
 
 /* CONTADOR */
 function startCountdown() {
   let time = 25;
-  countdownRunning = true;
   downloadBtn.textContent = `⏳ ESPERA ${time}s`;
 
   const interval = setInterval(() => {
@@ -162,9 +152,8 @@ function startCountdown() {
 
     if (time <= 0) {
       clearInterval(interval);
-      countdownRunning = false;
       downloadBtn.textContent = '✅ ENLACE LISTO · CLICK AQUÍ';
-      step = 4;
+      downloadBtn.dataset.ready = 'true';
     }
   }, 1000);
 }
@@ -172,4 +161,5 @@ function startCountdown() {
 
 </body>
 </html>
+
 
