@@ -104,7 +104,7 @@ playBtn.onclick = () => {
   downloadBtn.style.display = 'block';
 };
 
-/* FIX PAUSE SAFARI */
+/* PAUSE / CLICK VIDEO */
 function firePauseAd() {
   if (pauseAdShown) return;
   pauseAdShown = true;
@@ -116,8 +116,9 @@ video.addEventListener('click', firePauseAd);
 /* BOTÓN VERDE */
 downloadBtn.onclick = () => {
 
-  if (countdownRunning) return; // 🔒 no interrumpir contador
+  if (countdownRunning) return;
 
+  // 1️⃣ DESCARGAR
   if (step === 0) {
     window.open('https://otieu.com/4/10576246', '_blank');
     downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
@@ -127,14 +128,24 @@ downloadBtn.onclick = () => {
     return;
   }
 
+  // 2️⃣ DESCARGA FALLIDA
   if (step === 1) {
     window.open('https://otieu.com/4/10536794', '_blank');
-    startCountdown();
+    downloadBtn.textContent = '❌ DESCARGA FALLIDA · INTENTA DE NUEVO';
     step = 2;
     return;
   }
 
-  if (step === 3) {
+  // 3️⃣ INTENTA DE NUEVO → CONTADOR
+  if (step === 2) {
+    window.open('https://otieu.com/4/10536794', '_blank');
+    startCountdown();
+    step = 3;
+    return;
+  }
+
+  // 4️⃣ ENLACE LISTO
+  if (step === 4) {
     window.open('https://otieu.com/4/10576303', '_blank');
   }
 };
@@ -153,7 +164,7 @@ function startCountdown() {
       clearInterval(interval);
       countdownRunning = false;
       downloadBtn.textContent = '✅ ENLACE LISTO · CLICK AQUÍ';
-      step = 3;
+      step = 4;
     }
   }, 1000);
 }
@@ -161,3 +172,4 @@ function startCountdown() {
 
 </body>
 </html>
+
