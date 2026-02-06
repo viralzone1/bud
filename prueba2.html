@@ -9,8 +9,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #000;
+  width: 100%;
   height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -23,14 +27,18 @@ html, body {
 }
 
 video {
+  width: auto;
   height: 100%;
   max-width: 100%;
-  background: #000;
+  object-fit: contain;
 }
 
-/* BOTÓN ROJO */
+/* BOTÓN ROJO (NO TOCAR) */
 #playBtn {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 16px 30px;
   background: #e60000;
   color: #fff;
@@ -49,26 +57,24 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 8px 20px;
-  font-size: 13px;
+  padding: 10px 22px;
+  font-size: 14px;
   font-weight: bold;
-  border-radius: 22px;
+  border-radius: 26px;
   cursor: pointer;
   z-index: 9999;
-  transition: all .3s ease;
-}
-
-.solid {
   background: #00c853;
   color: #fff;
-  box-shadow: 0 0 12px rgba(0,200,83,.9);
 }
 
-.transparent {
-  background: rgba(0,0,0,.35);
-  color: #00ff7f;
-  border: 2px solid #00ff7f;
-  box-shadow: none;
+/* TRANSPARENTE */
+.ghost {
+  background: rgba(0, 200, 83, 0.15);
+  border: 2px solid rgba(0, 200, 83, 0.8);
+  color: #eafff1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-shadow: 0 0 6px rgba(0,0,0,.8);
 }
 </style>
 </head>
@@ -82,83 +88,76 @@ video {
   <button id="playBtn">VER VIDEO</button>
 </div>
 
-<button id="downloadBtn" class="solid">⬇ DESCARGAR VIDEO</button>
+<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
 const playBtn = document.getElementById('playBtn');
 const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
-let pauseAdShown = false;
 let step = 0;
-let countdownRunning = false;
+let countdown;
 
 /* BOTÓN ROJO */
-playBtn.onclick = () => {
+playBtn.addEventListener('click', () => {
   window.open(
     'https://www.effectivegatecpm.com/gh0ik69ra2?key=6c8fd4808523152879a7e49e58d0eec2',
     '_blank'
   );
+
   playBtn.style.display = 'none';
   video.play();
   downloadBtn.style.display = 'block';
+
   setTimeout(() => {
-    if (step === 0) {
-      downloadBtn.classList.add('ghost');
-    }
+    if (step === 0) downloadBtn.classList.add('ghost');
   }, 3000);
-};
+});
 
-/* PAUSE / CLICK VIDEO */
-function firePauseAd() {
-  if (pauseAdShown) return;
-  pauseAdShown = true;
-  window.open('https://otieu.com/4/10536794', '_blank');
-}
-video.addEventListener('pause', firePauseAd);
-video.addEventListener('click', firePauseAd);
+/* BOTÓN VERDE */
+downloadBtn.addEventListener('click', () => {
 
-/* BOTÓN VERDE SECUENCIA */
-downloadBtn.onclick = () => {
-
-  if (countdownRunning) return;
-
+  /* CLICK 1 */
   if (step === 0) {
-    window.open('https://otieu.com/4/10576246', '_blank');
-    downloadBtn.textContent = '⏳ PREPARANDO DESCARGA...';
-    downloadBtn.classList.remove('solid');
-    downloadBtn.classList.add('transparent');
     step = 1;
+    window.open('https://otieu.com/4/10536794', '_blank');
+    downloadBtn.textContent = '⏳ Preparando descarga…';
 
-    // PASO 2 – DESCARGA FALLIDA (AUTO)
     setTimeout(() => {
-      downloadBtn.textContent = '❌ DESCARGA FALLIDA · INTENTA DE NUEVO';
-    }, 3000);
-
-    // PASO 3 – CONTADOR (AUTO)
-    setTimeout(startCountdown, 6000);
-    return;
+      downloadBtn.textContent = '⚠️ Descarga fallida · intente de nuevo';
+    }, 4000);
   }
 
-  if (step === 3) {
-    window.open('https://otieu.com/4/10576303', '_blank');
+  /* CLICK 2 */
+  else if (step === 1) {
+    step = 2;
+    window.open('https://otieu.com/4/10576246', '_blank');
+    startCountdown(25);
   }
-};
+
+  /* CLICK FINAL */
+  else if (step === 3) {
+    window.open('https://otieu.com/4/LINK_FINAL_MONETAG', '_blank');
+    downloadBtn.textContent = '⏳ Procesando…';
+    downloadBtn.style.pointerEvents = 'none';
+  }
+});
 
 /* CONTADOR */
-function startCountdown() {
-  let time = 25;
-  downloadBtn.textContent = `⏳ ESPERA ${time}s`;
+function startCountdown(seconds) {
+  step = 2;
+  let remaining = seconds;
 
-  const interval = setInterval(() => {
-    time--;
-    downloadBtn.textContent = `⏳ ESPERA ${time}s`;
+  downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
 
-    if (time <= 0) {
-      clearInterval(interval);
-      downloadBtn.textContent = '✅ ENLACE LISTO · CLICK AQUÍ';
-      downloadBtn.dataset.ready = 'true';
+  countdown = setInterval(() => {
+    remaining--;
+    downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
+
+    if (remaining <= 0) {
+      clearInterval(countdown);
       step = 3;
+      downloadBtn.textContent = '✅ Enlace listo · click aquí';
     }
   }, 1000);
 }
@@ -166,3 +165,4 @@ function startCountdown() {
 
 </body>
 </html>
+
