@@ -49,23 +49,28 @@ video {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 22px;
-  font-size: 14px;
+  padding: 8px 20px;
+  font-size: 13px;
   font-weight: bold;
-  border-radius: 26px;
+  border-radius: 22px;
   cursor: pointer;
   z-index: 9999;
-  background: #00c853;
-  color: #fff;
+  transition: all .3s ease;
 }
 
-/* TRANSPARENTE */
-.ghost {
-  background: rgba(0, 200, 83, 0.15);
-  border: 2px solid rgba(0, 200, 83, 0.8);
-  color: #eafff1;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+/* SÓLIDO: DESCARGAR VIDEO */
+.solid {
+  background: #00c853;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0,200,83,.9);
+}
+
+/* TRANSPARENTE: los demás botones */
+.transparent {
+  background: rgba(0,0,0,.35);
+  color: #00ff7f;
+  border: 2px solid #00ff7f;
+  box-shadow: none;
   text-shadow: 0 0 6px rgba(0,0,0,.8);
 }
 </style>
@@ -80,7 +85,7 @@ video {
   <button id="playBtn">VER VIDEO</button>
 </div>
 
-<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
+<div id="downloadBtn" class="solid">⬇ DESCARGAR VIDEO</div>
 
 <script>
 const playBtn = document.getElementById('playBtn');
@@ -114,9 +119,11 @@ downloadBtn.addEventListener('click', () => {
     step = 1;
     window.open('https://otieu.com/4/10536794', '_blank');
     downloadBtn.textContent = '⏳ Preparando descarga…';
+    downloadBtn.classList.remove('solid');
+    downloadBtn.classList.add('transparent');
 
     setTimeout(() => {
-      downloadBtn.textContent = '⚠️ Descarga fallida · intente de nuevo';
+      downloadBtn.textContent = '❌ Descarga fallida · Click Nuevaente';
     }, 4000);
   }
 
@@ -162,4 +169,3 @@ video.addEventListener('pause', () => {
 
 </body>
 </html>
-
