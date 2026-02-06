@@ -27,6 +27,7 @@ html, body {
   align-items: center;
 }
 
+/* VIDEO */
 video {
   width: auto;
   height: 100%;
@@ -36,6 +37,7 @@ video {
   background: #000;
 }
 
+/* BOTÓN ROJO */
 #playBtn {
   position: absolute;
   top: 50%;
@@ -52,6 +54,7 @@ video {
   z-index: 10;
 }
 
+/* BOTÓN VERDE */
 #downloadBtn {
   display: none;
   position: fixed;
@@ -105,23 +108,19 @@ playBtn.addEventListener('click', () => {
   playBtn.style.display = 'none';
   video.play();
 
+  // Mostrar botón verde
   downloadBtn.style.display = 'block';
 });
 
-/* BOTÓN VERDE → ANUNCIO + DESCARGA */
-downloadBtn.addEventListener('click', (e) => {
-  e.preventDefault();
+/* BOTÓN VERDE → ANUNCIO + DESCARGA REAL */
+downloadBtn.addEventListener('click', () => {
 
-  // 1️⃣ Monetag
+  // 1️⃣ Abrir anuncio Monetag
   window.open('https://otieu.com/4/10536794', '_blank');
 
-  // 2️⃣ Descarga directa del video
-  const link = document.createElement('a');
-  link.href = video.querySelector('source').src;
-  link.download = 'video.mp4';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  // 2️⃣ Forzar descarga mediante navegación real
+  window.location.href = video.querySelector('source').src;
+
 });
 
 /* PAUSE → MONETAG */
