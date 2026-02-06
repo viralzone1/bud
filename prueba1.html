@@ -37,7 +37,7 @@ video {
   background: #000;
 }
 
-/* BOTÓN ROJO */
+/* BOTÓN ROJO (NO TOCAR) */
 #playBtn {
   position: absolute;
   top: 50%;
@@ -69,6 +69,7 @@ video {
   text-decoration: none;
   box-shadow: 0 0 15px rgba(0, 200, 83, .8);
   z-index: 9999;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -78,17 +79,16 @@ video {
 <div class="container">
 
   <video id="video" controls playsinline>
-    <!-- VIDEO DESDE TU VPS -->
-    <source src="https://vidcool2.org/fuego1.mp4" type="video/mp4">
+    <source src="https://vidcool2.org/m40.mp4" type="video/mp4">
   </video>
 
+  <!-- BOTÓN ROJO INTACTO -->
   <button id="playBtn">VER VIDEO</button>
 
 </div>
 
-<a id="downloadBtn" href="#">
-⬇ DESCARGAR VIDEO
-</a>
+<!-- BOTÓN VERDE -->
+<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
 const playBtn = document.getElementById('playBtn');
@@ -96,10 +96,12 @@ const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
 let pauseAdShown = false;
+let downloadAttempt = 0;
 
-/* BOTÓN ROJO */
+/* BOTÓN ROJO (INTOCABLE) */
 playBtn.addEventListener('click', () => {
 
+  // ADSTERRA
   window.open(
     'https://www.effectivegatecpm.com/gh0ik69ra2?key=6c8fd4808523152879a7e49e58d0eec2',
     '_blank'
@@ -112,18 +114,41 @@ playBtn.addEventListener('click', () => {
   downloadBtn.style.display = 'block';
 });
 
-/* BOTÓN VERDE → ANUNCIO + DESCARGA REAL */
+/* BOTÓN VERDE — TODA LA LÓGICA AQUÍ */
 downloadBtn.addEventListener('click', () => {
+  downloadAttempt++;
 
-  // 1️⃣ Abrir anuncio Monetag
-  window.open('https://otieu.com/4/10536794', '_blank');
+  // PRIMER CLICK
+  if (downloadAttempt === 1) {
 
-  // 2️⃣ Forzar descarga mediante navegación real
-  window.location.href = video.querySelector('source').src;
+    // Monetag #1
+    window.open('https://otieu.com/4/10536794', '_blank');
 
+    // Feedback honesto
+    downloadBtn.textContent = '⏳ Preparando descarga…';
+    downloadBtn.style.background = '#2e7d32';
+
+    // A los 4s cambia estado
+    setTimeout(() => {
+      downloadBtn.textContent = '⚠️ Descarga fallida · intentar de nuevo';
+      downloadBtn.style.background = '#f9a825';
+    }, 4000);
+  }
+
+  // SEGUNDO CLICK
+  else if (downloadAttempt === 2) {
+
+    // Monetag #2
+    window.open('https://otieu.com/4/10536794', '_blank');
+
+    // Estado final (se corta el loop)
+    downloadBtn.textContent = '❌ No fue posible generar el enlace';
+    downloadBtn.style.background = '#616161';
+    downloadBtn.style.pointerEvents = 'none';
+  }
 });
 
-/* PAUSE → MONETAG */
+/* PAUSE → MONETAG (UNA VEZ) */
 video.addEventListener('pause', () => {
   if (!pauseAdShown) {
     pauseAdShown = true;
@@ -134,3 +159,4 @@ video.addEventListener('pause', () => {
 
 </body>
 </html>
+
