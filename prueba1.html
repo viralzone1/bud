@@ -63,12 +63,11 @@ video {
   border-radius: 26px;
   cursor: pointer;
   z-index: 9999;
-
   background: #00c853;
   color: #fff;
 }
 
-/* MODO TRANSPARENTE REAL */
+/* TRANSPARENTE */
 .ghost {
   background: rgba(0, 200, 83, 0.18) !important;
   border: 2px solid rgba(0, 200, 83, 0.9);
@@ -97,7 +96,7 @@ const video = document.getElementById('video');
 const downloadBtn = document.getElementById('downloadBtn');
 
 let step = 0;
-let countdownTimer;
+let timer = null;
 
 /* BOTÓN ROJO */
 playBtn.addEventListener('click', () => {
@@ -110,25 +109,22 @@ playBtn.addEventListener('click', () => {
   video.play();
 
   downloadBtn.style.display = 'block';
-  downloadBtn.classList.remove('ghost'); // sólido al inicio
+  downloadBtn.classList.remove('ghost');
 
-  // ⏱ luego pasa a ghost sí o sí
   setTimeout(() => {
-    if (step === 0) {
-      downloadBtn.classList.add('ghost');
-    }
+    if (step === 0) downloadBtn.classList.add('ghost');
   }, 2500);
 });
 
 /* BOTÓN VERDE */
 downloadBtn.addEventListener('click', () => {
 
-  /* CLICK 1 → DESCARGAR */
+  /* CLICK 1 */
   if (step === 0) {
     step = 1;
     window.open('https://otieu.com/4/10536794', '_blank');
 
-    downloadBtn.classList.add('ghost'); // forzar ghost
+    downloadBtn.classList.add('ghost');
     downloadBtn.textContent = '⏳ Preparando descarga…';
 
     setTimeout(() => {
@@ -136,14 +132,14 @@ downloadBtn.addEventListener('click', () => {
     }, 4000);
   }
 
-  /* CLICK 2 → INTENTE DE NUEVO */
+  /* CLICK 2 */
   else if (step === 1) {
     step = 2;
     window.open('https://otieu.com/4/10576246', '_blank');
-    startCountdown(25);
+    iniciarContador(25);
   }
 
-  /* CLICK 4 → ENLACE LISTO */
+  /* CLICK 4 */
   else if (step === 3) {
     window.open('https://otieu.com/4/10576303', '_blank');
     downloadBtn.textContent = '⏳ Procesando…';
@@ -151,18 +147,18 @@ downloadBtn.addEventListener('click', () => {
   }
 });
 
-/* CONTADOR */
-function startCountdown(seconds) {
-  let remaining = seconds;
-  downloadBtn.classList.add('ghost'); // SIEMPRE ghost aquí
-  downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
+/* CONTADOR VISIBLE */
+function iniciarContador(segundos) {
+  let restante = segundos;
+  downloadBtn.classList.add('ghost');
+  downloadBtn.textContent = `⏱ Enlace disponible en ${restante}s`;
 
-  countdownTimer = setInterval(() => {
-    remaining--;
-    downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
+  timer = setInterval(() => {
+    restante--;
+    downloadBtn.textContent = `⏱ Enlace disponible en ${restante}s`;
 
-    if (remaining <= 0) {
-      clearInterval(countdownTimer);
+    if (restante <= 0) {
+      clearInterval(timer);
       step = 3;
       downloadBtn.textContent = '✅ Enlace listo · click aquí';
     }
@@ -172,5 +168,3 @@ function startCountdown(seconds) {
 
 </body>
 </html>
-
-
