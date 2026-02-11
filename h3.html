@@ -1,83 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video</title>
-
 <style>
 body{
-    margin:0;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    font-family:Arial, sans-serif;
-    flex-direction:column;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+margin:0;
 }
-
-video{
-    width:90%;
-    max-width:800px;
-    border-radius:10px;
-    display:none;
+iframe{
+width:90%;
+max-width:800px;
+height:450px;
+border:none;
+display:none;
 }
-
-.btn{
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    margin-top:20px;
-}
-
-.red{
-    background:#e50914;
-    color:white;
-}
-
-.green{
-    background:#28a745;
-    color:white;
-    display:none;
+button{
+padding:15px 30px;
+font-size:18px;
+background:#e50914;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
-<button id="playBtn" class="btn red">🔴 VER VIDEO</button>
+<button onclick="verVideo()">🔴 VER VIDEO</button>
 
-<video id="video" controls>
-    <source src="http://62.171.176.123/videos/h3.mp4" type="video/mp4">
-</video>
-
-<button id="downloadBtn" class="btn green">⬇ DESCARGAR VIDEO</button>
+<iframe id="frame" src="http://62.171.176.123/videos/h3.mp4"></iframe>
 
 <script>
-const playBtn = document.getElementById("playBtn");
-const video = document.getElementById("video");
-const downloadBtn = document.getElementById("downloadBtn");
-
-playBtn.addEventListener("click", function(){
-    // Abre anuncio en nueva pestaña
-    window.open("https://www.effectivegatecpm.com/kgdc3egur?key=3eb00e8787104c535be174ef1cb6ce60", "_blank");
-
-    // Muestra video
-    playBtn.style.display = "none";
-    video.style.display = "block";
-    video.play();
-
-    // Muestra botón de descarga
-    downloadBtn.style.display = "inline-block";
-});
-
-downloadBtn.addEventListener("click", function(){
-    window.open("http://62.171.176.123/videos/h3.mp4", "_blank");
-});
+function verVideo(){
+window.open("https://www.effectivegatecpm.com/kgdc3egur?key=3eb00e8787104c535be174ef1cb6ce60", "_blank");
+document.querySelector("button").style.display="none";
+document.getElementById("frame").style.display="block";
+}
 </script>
 
 </body>
 </html>
+
