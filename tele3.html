@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+video {
+  height: 100%;
+  max-width: 100%;
+  background: #000;
+}
+
+/* BOTÓN ROJO */
+#playBtn {
+  position: absolute;
+  padding: 16px 30px;
+  background: #e60000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* BOTÓN VERDE */
+#downloadBtn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 22px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all .3s ease;
+}
+
+/* SÓLIDO: DESCARGAR VIDEO */
+.solid {
+  background: #00c853;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0,200,83,.9);
+}
+
+/* TRANSPARENTE: los demás botones */
+.transparent {
+  background: rgba(0,0,0,.35);
+  color: #00ff7f;
+  border: 2px solid #00ff7f;
+  box-shadow: none;
+  text-shadow: 0 0 6px rgba(0,0,0,.8);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <video id="video" controls playsinline>
+    <source src="https://ia600604.us.archive.org/20/items/tele2_202602/tele3.mp4" type="video/mp4">
+  </video>
+  <button id="playBtn">VER VIDEO</button>
+</div>
+
+<div id="downloadBtn" class="solid">⬇ DESCARGAR VIDEO</div>
+
+<script>
+const playBtn = document.getElementById('playBtn');
+const video = document.getElementById('video');
+const downloadBtn = document.getElementById('downloadBtn');
+
+let step = 0;
+let countdown;
+
+/* BOTÓN ROJO */
+playBtn.addEventListener('click', () => {
+  window.open(
+    'https://www.effectivegatecpm.com/pedkfn5m2t?key=40f9b63cf39703803d577f6f61279489',
+    '_blank'
+  );
+
+  playBtn.style.display = 'none';
+  video.play();
+  downloadBtn.style.display = 'block';
+
+  setTimeout(() => {
+    if (step === 0) downloadBtn.classList.add('ghost');
+  }, 3000);
+});
+
+/* BOTÓN VERDE */
+downloadBtn.addEventListener('click', () => {
+
+  /* CLICK 1 */
+  if (step === 0) {
+    step = 1;
+    window.open('https://www.effectivegatecpm.com/pedkfn5m2t?key=40f9b63cf39703803d577f6f61279489', '_blank');
+    downloadBtn.textContent = '⏳ Preparando descarga…';
+    downloadBtn.classList.remove('solid');
+    downloadBtn.classList.add('transparent');
+
+    setTimeout(() => {
+      downloadBtn.textContent = '❌ Descarga fallida · Click Nuevaente';
+    }, 4000);
+  }
+
+  /* CLICK 2 */
+  else if (step === 1) {
+    step = 2;
+    window.open('https://www.effectivegatecpm.com/z3chm2x50w?key=95b0cfec998c15b90fed13c34d21a542', '_blank');
+    startCountdown(25);
+  }
+
+  /* CLICK FINAL */
+  else if (step === 3) {
+    window.open('https://www.effectivegatecpm.com/z3chm2x50w?key=95b0cfec998c15b90fed13c34d21a542', '_blank');
+    downloadBtn.textContent = '⏳ Procesando…';
+    downloadBtn.style.pointerEvents = 'none';
+  }
+});
+
+/* CONTADOR */
+function startCountdown(seconds) {
+  step = 2;
+  let remaining = seconds;
+
+  downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
+
+  countdown = setInterval(() => {
+    remaining--;
+    downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
+
+    if (remaining <= 0) {
+      clearInterval(countdown);
+      step = 3;
+      downloadBtn.textContent = '✅ Enlace listo · click aquí';
+    }
+  }, 1000);
+}
+
+/* PAUSE → MONETAG */
+video.addEventListener('pause', () => {
+  window.open('https://www.effectivegatecpm.com/kgdc3egur?key=3eb00e8787104c535be174ef1cb6ce60', '_blank');
+});
+</script>
+
+</body>
+</html>
