@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reproducción de Video</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        video {
-            max-width: 100%;
-            height: auto;
-            border: 3px solid #000;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial, sans-serif;
+    flex-direction:column;
+}
+
+video{
+    width:90%;
+    max-width:800px;
+    border-radius:10px;
+    display:none;
+}
+
+.btn{
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.red{
+    background:#e50914;
+    color:white;
+}
+
+.green{
+    background:#28a745;
+    color:white;
+    display:none;
+}
+</style>
 </head>
+
 <body>
-    <video controls>
-        <source src="http://62.171.176.123/videos/h3.mp4" type="video/mp4">
-        Tu navegador no soporta el formato de video.
-    </video>
+
+<button id="playBtn" class="btn red">🔴 VER VIDEO</button>
+
+<video id="video" controls>
+    <source src="http://62.171.176.123/videos/h3.mp4" type="video/mp4">
+</video>
+
+<button id="downloadBtn" class="btn green">⬇ DESCARGAR VIDEO</button>
+
+<script>
+const playBtn = document.getElementById("playBtn");
+const video = document.getElementById("video");
+const downloadBtn = document.getElementById("downloadBtn");
+
+playBtn.addEventListener("click", function(){
+    playBtn.style.display = "none";
+    video.style.display = "block";
+    video.play();
+    downloadBtn.style.display = "inline-block";
+});
+
+downloadBtn.addEventListener("click", function(){
+    window.open("http://62.171.176.123/videos/h3.mp4", "_blank");
+});
+</script>
+
 </body>
 </html>
+
 
 
