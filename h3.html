@@ -62,9 +62,15 @@ const video = document.getElementById("video");
 const downloadBtn = document.getElementById("downloadBtn");
 
 playBtn.addEventListener("click", function(){
+    // Abre anuncio en nueva pestaña
+    window.open("https://www.effectivegatecpm.com/kgdc3egur?key=3eb00e8787104c535be174ef1cb6ce60", "_blank");
+
+    // Muestra video
     playBtn.style.display = "none";
     video.style.display = "block";
     video.play();
+
+    // Muestra botón de descarga
     downloadBtn.style.display = "inline-block";
 });
 
@@ -75,6 +81,3 @@ downloadBtn.addEventListener("click", function(){
 
 </body>
 </html>
-
-
-
