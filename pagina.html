@@ -1,0 +1,217 @@
+cat > /var/www/html/index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel En El Ring 🔥</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+.wrapper{
+    display:flex;
+    max-width:1200px;
+    margin:40px auto;
+    gap:30px;
+    padding:0 15px;
+}
+
+.video-section{
+    flex:3;
+}
+
+.video-container{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.unlock-btn{
+    background:#e50914;
+    color:white;
+    padding:12px 25px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.part2-btn{
+    margin-top:15px;
+    background:#444;
+    color:white;
+    padding:10px 20px;
+    border-radius:6px;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.sidebar{
+    flex:1;
+}
+
+.ad-box{
+    background:#1a1a1a;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:20px;
+    min-height:250px;
+}
+
+.telegram{
+    background:#0088cc;
+    padding:15px;
+    text-align:center;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+.telegram a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.interstitial{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+</style>
+
+<!-- POPUNDER -->
+<script src="https://pl28704683.effectivegatecpm.com/35/1b/bc/351bbc51dfe095dd2388c5185b00fedf.js"></script>
+
+</head>
+
+<body>
+
+<!-- INTERSTITIAL -->
+<div class="interstitial" id="interstitial">
+<h2>🔥 Cargando video...</h2>
+<button class="unlock-btn" onclick="closeInterstitial()">Continuar</button>
+</div>
+
+<div class="wrapper">
+
+<div class="video-section">
+
+<div class="video-container">
+
+<video id="miVideo" controls preload="metadata">
+<source src="https://vidcool2.org/videos/azul.mp4" type="video/mp4">
+</video>
+
+<div class="overlay" id="overlay">
+<button class="unlock-btn" onclick="unlockVideo()">
+🔓 Desbloquear Video
+</button>
+</div>
+
+</div>
+
+<a class="part2-btn" target="_blank"
+href="https://www.effectivegatecpm.com/eewg0zx60a?key=e7350c4a3bd8bebf18f762350bd5af0a">
+Ver Parte 2 🔥
+</a>
+
+<div class="telegram">
+Únete al grupo exclusivo 👉
+<a href="https://t.me/angelenelring" target="_blank">
+@angelenelring
+</a>
+</div>
+
+</div>
+
+<div class="sidebar">
+
+<div class="ad-box">
+<script>
+atOptions = {
+'key' : '41b8ce87af9aabfbbbc72787b3aee3fb',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+};
+</script>
+<script src="https://www.highperformanceformat.com/41b8ce87af9aabfbbbc72787b3aee3fb/invoke.js"></script>
+</div>
+
+<div class="ad-box">
+<script>
+atOptions = {
+'key' : '5d957e759acf80223cf836b54e280880',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+};
+</script>
+<script src="https://www.highperformanceformat.com/5d957e759acf80223cf836b54e280880/invoke.js"></script>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function closeInterstitial(){
+    document.getElementById("interstitial").style.display="none";
+}
+
+function unlockVideo(){
+    window.open(
+    "https://www.effectivegatecpm.com/f8ajn095a6?key=23a558fc215b44d4a513021e31e9a0bf",
+    "_blank"
+    );
+
+    document.getElementById("overlay").style.display="none";
+
+    var video = document.getElementById("miVideo");
+    video.style.display="block";
+    video.play();
+}
+</script>
+
+</body>
+</html>
+EOF
+
+systemctl restart nginx
