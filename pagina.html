@@ -87,7 +87,7 @@ video{
     font-weight:bold;
 }
 
-/* Estilo para el botón de descarga */
+/* Estilo para el botón de descarga: Sólido, igual que el botón de Telegram */
 #downloadBtn {
   display: none;
   position: fixed;
@@ -99,21 +99,10 @@ video{
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  z-index: 9999;
-}
-
-.solid {
-  background: #00c853;
-  color: #fff;
+  background: #00c853; /* Color verde */
+  color: white;
   box-shadow: 0 0 12px rgba(0,200,83,.9);
-}
-
-.transparent {
-  background: rgba(0,0,0,.35);
-  color: #00ff7f;
-  border: 2px solid #00ff7f;
-  box-shadow: none;
-  text-shadow: 0 0 6px rgba(0,0,0,.8);
+  z-index: 9999;
 }
 
 </style>
@@ -180,7 +169,7 @@ atOptions = {
 
 </div>
 
-<div id="downloadBtn" class="solid">⬇ DESCARGAR VIDEO</div>
+<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
 const playBtn = document.getElementById('playBtn');
@@ -210,8 +199,6 @@ function unlockVideo(){
 
     // Cambiar el texto del botón a "Preparando descarga"
     downloadBtn.textContent = '⏳ Preparando descarga…';
-    downloadBtn.classList.remove('solid');
-    downloadBtn.classList.add('transparent');
 
     setTimeout(() => {
         downloadBtn.textContent = '❌ Descarga fallida · Clic nuevamente';
