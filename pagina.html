@@ -87,11 +87,11 @@ video{
     font-weight:bold;
 }
 
-/* Botón de descarga: igual al de Telegram pero verde */
+/* Estilo para el botón de descarga */
 #downloadBtn {
-  display: block; /* Ahora el botón está visible desde el principio */
-  position: fixed;
-  bottom: 20px;
+  display: block;
+  position: absolute;
+  bottom: 20px; /* Ajustamos para que esté justo debajo del botón de Telegram */
   left: 50%;
   transform: translateX(-50%);
   padding: 14px 30px;
@@ -169,7 +169,7 @@ atOptions = {
 
 </div>
 
-<!-- Botón de descarga que aparece desde el principio -->
+<!-- Botón de descarga que aparece justo debajo del botón de Telegram -->
 <div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
