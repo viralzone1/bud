@@ -174,18 +174,18 @@ atOptions = {
 
 <script>
 function unlockVideo(){
-    // Abrir el enlace del anuncio cuando se presiona el botón "Desbloquear Video"
+    // Abrir el anuncio cuando se presiona el botón "Desbloquear Video"
     window.open(
         "https://www.effectivegatecpm.com/eewg0zx60a?key=e7350c4a3bd8bebf18f762350bd5af0a", 
         "_blank"
     );
 
-    // Ocultar la capa de sobrecarga
-    document.getElementById("overlay").style.display="none";
+    // Ocultar la capa de sobrecarga y el botón
+    document.getElementById("overlay").style.display = "none";
 
     // Mostrar y reproducir el video
     var video = document.getElementById("miVideo");
-    video.style.display="block";
+    video.style.display = "block";
     video.play();
 }
 
