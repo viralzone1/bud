@@ -90,7 +90,7 @@ video{
 .telegram-list {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Reduje más la separación */
+    gap: 5px; /* Reducción de la separación */
 }
 
 .blinking-btn {
@@ -134,11 +134,11 @@ video{
 
 <!-- Botones ajustados y funcionalidad agregada -->
 <div class="telegram-list">
+    <!-- Botón verde que parpadea y dice "Descargar Video" -->
     <div class="telegram">
-        Únete a nuestro otro grupo 👉
-        <a href="https://t.me/otrogrupo" target="_blank">
-        @otrogrupo
-        </a>
+        <button class="blinking-btn" onclick="downloadVideo()">
+            Descargar Video
+        </button>
     </div>
 
     <div class="telegram">
@@ -148,12 +148,6 @@ video{
         </a>
     </div>
 
-    <!-- Botón verde "Descargar Video" con parpadeo y Smartlink -->
-    <div class="telegram">
-        <button class="blinking-btn" onclick="downloadVideo()">
-            Descargar Video
-        </button>
-    </div>
 </div>
 
 </div>
