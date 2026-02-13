@@ -74,9 +74,11 @@ video{
 
 .recommendation-box img{
     width:100%;
-    max-width:300px;
+    height:auto;
+    max-width:100%;
     border-radius:8px;
     margin-bottom:10px;
+    cursor:pointer;
 }
 
 .recommendation-box a{
@@ -113,6 +115,19 @@ video{
     border-radius:10px;
     margin-top:10px;
     cursor:pointer;
+}
+
+.recommendations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recommendation-box {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 </style>
 </head>
@@ -154,25 +169,41 @@ video{
 
 <div class="sidebar">
 
-<!-- Recomendación de video con miniatura -->
-<div class="recommendation-box">
-    <h3>Te recomendamos este video</h3>
-    <a href="https://viralzone1.github.io/bud/tele5.html" target="_blank">
-        <img src="https://ia600701.us.archive.org/29/items/captura-de-pantalla-2026-02-12-a-las-2.53.47-a.-m./Captura%20de%20pantalla%202026-02-12%20a%20las%202.53.47%E2%80%AFa.%E2%80%AFm..png" alt="Miniatura 1">
-        <p>Video 1: ¡Mira este increíble video!</p>
-    </a>
-    <a href="https://viralzone1.github.io/bud/tele3.html" target="_blank">
-        <img src="https://via.placeholder.com/300x150?text=Video+2" alt="Miniatura 2">
-        <p>Video 2: ¡No te lo puedes perder!</p>
-    </a>
-    <a href="https://viralzone1.github.io/bud/tele2.html" target="_blank">
-        <img src="https://via.placeholder.com/300x150?text=Video+3" alt="Miniatura 3">
-        <p>Video 3: ¡Más contenido para ti!</p>
-    </a>
-    <a href="https://viralzone1.github.io/bud/tele1.html" target="_blank">
-        <img src="https://via.placeholder.com/300x150?text=Video+4" alt="Miniatura 4">
-        <p>Video 4: ¡El mejor video de todos!</p>
-    </a>
+<!-- Contenedor para las recomendaciones de video -->
+<div class="recommendations-container">
+
+    <!-- Recomendación de video 1 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/tele5.html" target="_blank">
+            <img src="https://ia601405.us.archive.org/19/items/gemini-generated-image-erk-9weerk-9weerk-9/Gemini_Generated_Image_erk9weerk9weerk9.png" alt="Miniatura 1">
+            <p>Video 1: ¡Mira este increíble video!</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 2 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/tele3.html" target="_blank">
+            <img src="https://via.placeholder.com/300x150?text=Video+2" alt="Miniatura 2">
+            <p>Video 2: ¡No te lo puedes perder!</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 3 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/tele2.html" target="_blank">
+            <img src="https://via.placeholder.com/300x150?text=Video+3" alt="Miniatura 3">
+            <p>Video 3: ¡Más contenido para ti!</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 4 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/tele1.html" target="_blank">
+            <img src="https://via.placeholder.com/300x150?text=Video+4" alt="Miniatura 4">
+            <p>Video 4: ¡El mejor video de todos!</p>
+        </a>
+    </div>
+
 </div>
 
 </div>
