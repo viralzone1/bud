@@ -90,17 +90,16 @@ video{
 /* Estilo para el botón de descarga */
 #downloadBtn {
   display: none;
-  position: fixed;
-  top: 15px;
+  position: absolute;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 8px 20px;
-  font-size: 13px;
+  padding: 14px 30px;
+  font-size: 18px;
   font-weight: bold;
-  border-radius: 22px;
+  border-radius: 10px;
   cursor: pointer;
   z-index: 9999;
-  transition: all .3s ease;
 }
 
 .solid {
@@ -116,6 +115,7 @@ video{
   box-shadow: none;
   text-shadow: 0 0 6px rgba(0,0,0,.8);
 }
+
 </style>
 </head>
 
@@ -189,6 +189,7 @@ const downloadBtn = document.getElementById('downloadBtn');
 
 let step = 0;
 let countdown;
+let remainingTime = 60; // Tiempo inicial de 60 segundos para el contador
 
 function unlockVideo(){
     // Abrir el anuncio en la misma función
@@ -207,21 +208,23 @@ function unlockVideo(){
     // Mostrar el botón de descarga
     downloadBtn.style.display = 'block';
 
-    // Llamar a la función de countdown
-    startCountdown(10); // 10 segundos de cuenta regresiva para la descarga
+    // Cambiar el texto del botón a "Preparando descarga"
+    downloadBtn.textContent = '⏳ Preparando descarga…';
+    downloadBtn.classList.remove('solid');
+    downloadBtn.classList.add('transparent');
+
+    setTimeout(() => {
+        downloadBtn.textContent = '❌ Descarga fallida · Click nuevamente';
+    }, 4000);
 }
 
 // Lógica del botón de descarga
 downloadBtn.addEventListener('click', () => {
   // Abrir el anuncio de monetización al hacer clic en el botón de descarga
   window.open('https://www.effectivegatecpm.com/f33ia2j7gg?key=528dec798dea16d7d31a9c6d41429b73', '_blank');
-  downloadBtn.textContent = '⏳ Preparando descarga…';
-  downloadBtn.classList.remove('solid');
-  downloadBtn.classList.add('transparent');
-
-  setTimeout(() => {
-    downloadBtn.textContent = '❌ Descarga fallida · Click Nuevaente';
-  }, 4000);
+  
+  // Después de la falla, se habilita el contador
+  startCountdown(60); // 60 segundos para la cuenta regresiva
 });
 
 // Contador para mostrar el tiempo restante antes de permitir la descarga
