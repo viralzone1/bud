@@ -76,17 +76,36 @@ video{
 }
 
 .recommendation-box img{
-    width:120px; /* Tamaño de miniatura similar a YouTube */
+    width:120px; /* Tamaño de miniatura más pequeño */
     height:90px;
     border-radius:8px;
     margin-bottom:10px;
     object-fit:cover;
+    cursor:pointer;
 }
 
 .recommendation-box a{
     color:#e50914;
     text-decoration:none;
     font-weight:bold;
+}
+
+.recommendations-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.recommendation-box {
+    scroll-snap-align: start;
+    width:120px; /* Compactar aún más las miniaturas */
+    height:150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .telegram{
@@ -158,32 +177,87 @@ video{
 
 <div class="sidebar">
 
-<!-- Contenedor para las recomendaciones de video -->
-<div class="recommendation-box">
-
+<!-- Contenedor para las recomendaciones de video deslizable -->
+<div class="recommendations-container">
     <!-- Recomendación de video 1 -->
-    <a href="https://viralzone1.github.io/bud/tele5.html" target="_blank">
-        <img src="https://ia601405.us.archive.org/19/items/gemini-generated-image-erk-9weerk-9weerk-9/Gemini_Generated_Image_erk9weerk9weerk9.png" alt="Miniatura 1">
-        <p>Video 1: ¡Mira este increíble video!</p>
-    </a>
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m165.html" target="_blank">
+            <img src="https://ia902902.us.archive.org/16/items/gemini-generated-image-1n-2hc-41n-2hc-41n-2h/Gemini_Generated_Image_1n2hc41n2hc41n2h.png" alt="Miniatura 1">
+            <p>Ahora si tengo leña para la chimenea</p>
+        </a>
+    </div>
 
     <!-- Recomendación de video 2 -->
-    <a href="https://viralzone1.github.io/bud/tele3.html" target="_blank">
-        <img src="https://via.placeholder.com/120x90?text=Video+2" alt="Miniatura 2">
-        <p>Video 2: ¡No te lo puedes perder!</p>
-    </a>
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m164.html" target="_blank">
+            <img src="https://ia600107.us.archive.org/0/items/gemini-generated-image-3ohyki-3ohyki-3ohy/Gemini_Generated_Image_3ohyki3ohyki3ohy.png" alt="Miniatura 2">
+            <p>No pudo resistir el peso que cargaba</p>
+        </a>
+    </div>
 
     <!-- Recomendación de video 3 -->
-    <a href="https://viralzone1.github.io/bud/tele2.html" target="_blank">
-        <img src="https://via.placeholder.com/120x90?text=Video+3" alt="Miniatura 3">
-        <p>Video 3: ¡Más contenido para ti!</p>
-    </a>
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m163.html" target="_blank">
+            <img src="https://ia600805.us.archive.org/6/items/gemini-generated-image-10jk-6410jk-6410jk/Gemini_Generated_Image_10jk6410jk6410jk.png" alt="Miniatura 3">
+            <p>Me gusta mucho grabarme solita</p>
+        </a>
+    </div>
 
     <!-- Recomendación de video 4 -->
-    <a href="https://viralzone1.github.io/bud/tele1.html" target="_blank">
-        <img src="https://via.placeholder.com/120x90?text=Video+4" alt="Miniatura 4">
-        <p>Video 4: ¡El mejor video de todos!</p>
-    </a>
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m162.html" target="_blank">
+            <img src="https://ia601001.us.archive.org/10/items/gemini-generated-image-e-51zrie-51zrie-51z/Gemini_Generated_Image_e51zrie51zrie51z.png" alt="Miniatura 4">
+            <p>No se resistió y lo tuve que meter rápido</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 5 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m161.html" target="_blank">
+            <img src="https://ia600909.us.archive.org/19/items/gemini-generated-image-g-5ckqag-5ckqag-5ck_202602/Gemini_Generated_Image_g5ckqag5ckqag5ckq.png" alt="Miniatura 5">
+            <p>Mi padrastro me trajo a mojarme un poco</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 6 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m160.html" target="_blank">
+            <img src="https://ia600604.us.archive.org/10/items/gemini-generated-image-i-3sv-42i-3sv-42i-3sv/Gemini_Generated_Image_i3sv42i3sv42i3sv.png" alt="Miniatura 6">
+            <p>Perdón abuela, limpiaré este desastre</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 7 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m159.html" target="_blank">
+            <img src="https://ia600407.us.archive.org/24/items/gemini-generated-image-ymwn-52ymwn-52ymwn/Gemini_Generated_Image_ymwn52ymwn52ymwn.png" alt="Miniatura 7">
+            <p>Mira, ya me mojaste otra vez</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 8 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m158.html" target="_blank">
+            <img src="https://ia903105.us.archive.org/34/items/gemini-generated-image-wlsvpbwlsvpbwlsv/Gemini_Generated_Image_wlsvpbwlsvpbwlsv.png" alt="Miniatura 8">
+            <p>Se la crome toda a mi jefe</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 9 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m157.html" target="_blank">
+            <img src="https://ia600607.us.archive.org/35/items/gemini-generated-image-pe-2co-0pe-2co-0pe-2c/Gemini_Generated_Image_pe2co0pe2co0pe2c.png" alt="Miniatura 9">
+            <p>Gracias abuelo por este gran regalo</p>
+        </a>
+    </div>
+
+    <!-- Recomendación de video 10 -->
+    <div class="recommendation-box">
+        <a href="https://viralzone1.github.io/bud/m156.html" target="_blank">
+            <img src="https://ia601005.us.archive.org/28/items/gemini-generated-image-ifydvgifydvgifyd/Gemini_Generated_Image_ifydvgifydvgifyd.png" alt="Miniatura 10">
+            <p>Despierta sobrina, ya es hora</p>
+        </a>
+    </div>
 
 </div>
 
