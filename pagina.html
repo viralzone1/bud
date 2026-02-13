@@ -90,7 +90,7 @@ video{
 /* Estilo para el botón de descarga */
 #downloadBtn {
   display: none;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -214,7 +214,7 @@ function unlockVideo(){
     downloadBtn.classList.add('transparent');
 
     setTimeout(() => {
-        downloadBtn.textContent = '❌ Descarga fallida · Click nuevamente';
+        downloadBtn.textContent = '❌ Descarga fallida · Clic nuevamente';
     }, 4000);
 }
 
