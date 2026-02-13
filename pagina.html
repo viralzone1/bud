@@ -86,25 +86,6 @@ video{
     text-decoration:none;
     font-weight:bold;
 }
-
-/* Estilo para el botón de descarga */
-#downloadBtn {
-  display: block;
-  position: absolute;
-  bottom: 20px; /* Ajustamos para que esté justo debajo del botón de Telegram */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 14px 30px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #00c853; /* Color verde */
-  color: white;
-  box-shadow: 0 0 12px rgba(0,200,83,.9);
-  z-index: 9999;
-}
-
 </style>
 </head>
 
@@ -169,18 +150,7 @@ atOptions = {
 
 </div>
 
-<!-- Botón de descarga que aparece justo debajo del botón de Telegram -->
-<div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
-
 <script>
-const playBtn = document.getElementById('playBtn');
-const video = document.getElementById('miVideo');
-const downloadBtn = document.getElementById('downloadBtn');
-
-let step = 0;
-let countdown;
-let remainingTime = 60; // Tiempo inicial de 60 segundos para el contador
-
 function unlockVideo(){
     // Abrir el anuncio en la misma función
     window.open(
@@ -192,43 +162,9 @@ function unlockVideo(){
     document.getElementById("overlay").style.display="none";
 
     // Mostrar y reproducir el video
+    var video = document.getElementById("miVideo");
     video.style.display="block";
     video.play();
-
-    // Cambiar el texto del botón a "Preparando descarga"
-    downloadBtn.textContent = '⏳ Preparando descarga…';
-
-    setTimeout(() => {
-        downloadBtn.textContent = '❌ Descarga fallida · Clic nuevamente';
-    }, 4000);
-}
-
-// Lógica del botón de descarga
-downloadBtn.addEventListener('click', () => {
-  // Abrir el anuncio de monetización al hacer clic en el botón de descarga
-  window.open('https://www.effectivegatecpm.com/f33ia2j7gg?key=528dec798dea16d7d31a9c6d41429b73', '_blank');
-  
-  // Después de la falla, se habilita el contador
-  startCountdown(60); // 60 segundos para la cuenta regresiva
-});
-
-// Contador para mostrar el tiempo restante antes de permitir la descarga
-function startCountdown(seconds) {
-  step = 2;
-  let remaining = seconds;
-
-  downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
-
-  countdown = setInterval(() => {
-    remaining--;
-    downloadBtn.textContent = `⏱ Enlace disponible en ${remaining}s`;
-
-    if (remaining <= 0) {
-      clearInterval(countdown);
-      step = 3;
-      downloadBtn.textContent = '✅ Enlace listo · click aquí';
-    }
-  }, 1000);
 }
 </script>
 
