@@ -65,12 +65,24 @@ video{
     flex:1;
 }
 
-.ad-box{
+.recommendation-box{
     background:#1a1a1a;
-    padding:10px;
+    padding:15px;
     border-radius:10px;
-    margin-bottom:20px;
-    text-align:center;
+    margin-top:20px;
+}
+
+.recommendation-box img{
+    width:100%;
+    max-width:300px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.recommendation-box a{
+    color:#e50914;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 .telegram{
@@ -142,30 +154,25 @@ video{
 
 <div class="sidebar">
 
-<div class="ad-box">
-<script>
-atOptions = {
-'key' : '41b8ce87af9aabfbbbc72787b3aee3fb',
-'format' : 'iframe',
-'height' : 250,
-'width' : 300,
-'params' : {}
-};
-</script>
-<script src="https://www.highperformanceformat.com/41b8ce87af9aabfbbbc72787b3aee3fb/invoke.js"></script>
-</div>
-
-<div class="ad-box">
-<script>
-atOptions = {
-'key' : '5d957e759acf80223cf836b54e280880',
-'format' : 'iframe',
-'height' : 250,
-'width' : 300,
-'params' : {}
-};
-</script>
-<script src="https://www.highperformanceformat.com/5d957e759acf80223cf836b54e280880/invoke.js"></script>
+<!-- Recomendaciones de videos con miniaturas ficticias -->
+<div class="recommendation-box">
+    <h3>Te recomendamos este video</h3>
+    <a href="https://viralzone1.github.io/bud/tele5.html" target="_blank">
+        <img src="https://via.placeholder.com/300x150?text=Video+1" alt="Miniatura 1">
+        <p>Video 1: ¡Mira este increíble video!</p>
+    </a>
+    <a href="https://viralzone1.github.io/bud/tele3.html" target="_blank">
+        <img src="https://via.placeholder.com/300x150?text=Video+2" alt="Miniatura 2">
+        <p>Video 2: ¡No te lo puedes perder!</p>
+    </a>
+    <a href="https://viralzone1.github.io/bud/tele2.html" target="_blank">
+        <img src="https://via.placeholder.com/300x150?text=Video+3" alt="Miniatura 3">
+        <p>Video 3: ¡Más contenido para ti!</p>
+    </a>
+    <a href="https://viralzone1.github.io/bud/tele1.html" target="_blank">
+        <img src="https://via.placeholder.com/300x150?text=Video+4" alt="Miniatura 4">
+        <p>Video 4: ¡El mejor video de todos!</p>
+    </a>
 </div>
 
 </div>
@@ -174,7 +181,7 @@ atOptions = {
 
 <script>
 function unlockVideo(){
-    // Abrir el anuncio cuando se presiona el botón "Desbloquear Video"
+    // Abrir el enlace del anuncio cuando se presiona el botón "Desbloquear Video"
     window.open(
         "https://www.effectivegatecpm.com/eewg0zx60a?key=e7350c4a3bd8bebf18f762350bd5af0a", 
         "_blank"
@@ -194,9 +201,6 @@ function openAd() {
     window.open("https://www.effectivegatecpm.com/eewg0zx60a?key=e7350c4a3bd8bebf18f762350bd5af0a", "_blank");
 }
 </script>
-
-<!-- POPUNDER (AL FINAL PARA QUE FUNCIONE BIEN) -->
-<script src="https://pl28704683.effectivegatecpm.com/35/1b/bc/351bbc51dfe095dd2388c5185b00fedf.js"></script>
 
 </body>
 </html>
