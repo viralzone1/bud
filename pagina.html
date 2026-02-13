@@ -74,7 +74,7 @@ video{
 }
 
 .telegram{
-    background: #28a745; /* Deja este color verde normal */
+    background: #0088cc; /* Color azul para el botón de Telegram */
     padding:15px;
     text-align:center;
     border-radius:10px;
@@ -94,8 +94,12 @@ video{
 }
 
 .telegram-download {
-    background: gold; /* Color dorado para el botón de descarga */
-    color:black; /* Letras negras para destacar en dorado */
+    background: gold; /* Color dorado solo para el botón de descarga */
+    color:black; /* Letras negras para el botón de descarga */
+    padding:15px;
+    text-align:center;
+    border-radius:10px;
+    margin-top:10px;
 }
 </style>
 </head>
@@ -186,5 +190,3 @@ function unlockVideo(){
     video.style.display="block";
     video.play();
 }
-
-
