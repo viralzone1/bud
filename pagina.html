@@ -98,7 +98,7 @@ video{
 <div class="video-container">
 
 <video id="miVideo" controls preload="metadata">
-<source src="https://ia600108.us.archive.org/21/items/tele4/tele4.mp4" type="video/mp4">
+<source src="https://vidcool2.org/videos/azul.mp4" type="video/mp4">
 </video>
 
 <div class="overlay" id="overlay">
@@ -152,13 +152,16 @@ atOptions = {
 
 <script>
 function unlockVideo(){
+    // Abrir el anuncio en la misma función
     window.open(
-    "https://www.effectivegatecpm.com/f8ajn095a6?key=23a558fc215b44d4a513021e31e9a0bf",
-    "_blank"
+        "https://www.effectivegatecpm.com/f8ajn095a6?key=23a558fc215b44d4a513021e31e9a0bf",
+        "_blank"
     );
 
+    // Ocultar la capa de sobrecarga
     document.getElementById("overlay").style.display="none";
 
+    // Mostrar y reproducir el video
     var video = document.getElementById("miVideo");
     video.style.display="block";
     video.play();
@@ -170,4 +173,5 @@ function unlockVideo(){
 
 </body>
 </html>
+
 
