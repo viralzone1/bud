@@ -87,9 +87,9 @@ video{
     font-weight:bold;
 }
 
-/* Botón de descarga similar al de Telegram */
+/* Botón de descarga: igual al de Telegram pero verde */
 #downloadBtn {
-  display: none;
+  display: block; /* Ahora el botón está visible desde el principio */
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -99,9 +99,9 @@ video{
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  background: #0088cc; /* Color igual que el botón de Telegram */
+  background: #00c853; /* Color verde */
   color: white;
-  box-shadow: 0 0 12px rgba(0,0,0,.9);
+  box-shadow: 0 0 12px rgba(0,200,83,.9);
   z-index: 9999;
 }
 
@@ -169,7 +169,7 @@ atOptions = {
 
 </div>
 
-<!-- Botón de descarga que aparece después de desbloquear el video -->
+<!-- Botón de descarga que aparece desde el principio -->
 <div id="downloadBtn">⬇ DESCARGAR VIDEO</div>
 
 <script>
@@ -194,9 +194,6 @@ function unlockVideo(){
     // Mostrar y reproducir el video
     video.style.display="block";
     video.play();
-
-    // Mostrar el botón de descarga
-    downloadBtn.style.display = 'block';
 
     // Cambiar el texto del botón a "Preparando descarga"
     downloadBtn.textContent = '⏳ Preparando descarga…';
