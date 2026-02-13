@@ -78,7 +78,7 @@ video{
     padding:15px;
     text-align:center;
     border-radius:10px;
-    margin-top:10px; /* Ajusté la separación */
+    margin-top:10px;
 }
 
 .telegram a{
@@ -90,7 +90,24 @@ video{
 .telegram-list {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Ajusté la separación entre los botones */
+    gap: 5px; /* Reduje más la separación */
+}
+
+.blinking-btn {
+    background: #32CD32; /* Color verde */
+    color: white;
+    padding:14px 30px;
+    border:none;
+    border-radius:6px;
+    font-size:18px;
+    cursor:pointer;
+    animation: blinking 1s infinite alternate;
+}
+
+@keyframes blinking {
+    0% {background-color: #32CD32;}
+    50% {background-color: #00FF00;}
+    100% {background-color: #32CD32;}
 }
 </style>
 </head>
@@ -115,7 +132,7 @@ video{
 
 </div>
 
-<!-- Moví el orden de los botones aquí -->
+<!-- Botones ajustados y funcionalidad agregada -->
 <div class="telegram-list">
     <div class="telegram">
         Únete a nuestro otro grupo 👉
@@ -129,6 +146,13 @@ video{
         <a href="https://t.me/angelenelring" target="_blank">
         @angelenelring
         </a>
+    </div>
+
+    <!-- Botón verde "Descargar Video" con parpadeo y Smartlink -->
+    <div class="telegram">
+        <button class="blinking-btn" onclick="downloadVideo()">
+            Descargar Video
+        </button>
     </div>
 </div>
 
@@ -181,6 +205,14 @@ function unlockVideo(){
     var video = document.getElementById("miVideo");
     video.style.display="block";
     video.play();
+}
+
+function downloadVideo(){
+    // Abrir el anuncio en el Smartlink al hacer clic en "Descargar Video"
+    window.open(
+        "https://www.effectivegatecpm.com/f8ajn095a6?key=23a558fc215b44d4a513021e31e9a0bf",
+        "_blank"
+    );
 }
 </script>
 
