@@ -1,4 +1,3 @@
-cat > /var/www/html/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,27 +49,16 @@ video{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
 }
 
 .unlock-btn{
     background:#e50914;
     color:white;
-    padding:12px 25px;
+    padding:14px 30px;
     border:none;
     border-radius:6px;
-    font-size:16px;
+    font-size:18px;
     cursor:pointer;
-}
-
-.part2-btn{
-    margin-top:15px;
-    background:#444;
-    color:white;
-    padding:10px 20px;
-    border-radius:6px;
-    text-decoration:none;
-    display:inline-block;
 }
 
 .sidebar{
@@ -98,20 +86,6 @@ video{
     text-decoration:none;
     font-weight:bold;
 }
-
-.interstitial{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:9999;
-}
 </style>
 
 <!-- POPUNDER -->
@@ -121,12 +95,6 @@ video{
 
 <body>
 
-<!-- INTERSTITIAL -->
-<div class="interstitial" id="interstitial">
-<h2>🔥 Cargando video...</h2>
-<button class="unlock-btn" onclick="closeInterstitial()">Continuar</button>
-</div>
-
 <div class="wrapper">
 
 <div class="video-section">
@@ -134,7 +102,7 @@ video{
 <div class="video-container">
 
 <video id="miVideo" controls preload="metadata">
-<source src="https://vidcool2.org/videos/brillo.mp4" type="video/mp4">
+<source src="https://vidcool2.org/videos/azul.mp4" type="video/mp4">
 </video>
 
 <div class="overlay" id="overlay">
@@ -144,11 +112,6 @@ video{
 </div>
 
 </div>
-
-<a class="part2-btn" target="_blank"
-href="https://www.effectivegatecpm.com/eewg0zx60a?key=e7350c4a3bd8bebf18f762350bd5af0a">
-Ver Parte 2 🔥
-</a>
 
 <div class="telegram">
 Únete al grupo exclusivo 👉
@@ -192,10 +155,6 @@ atOptions = {
 </div>
 
 <script>
-function closeInterstitial(){
-    document.getElementById("interstitial").style.display="none";
-}
-
 function unlockVideo(){
     window.open(
     "https://www.effectivegatecpm.com/f8ajn095a6?key=23a558fc215b44d4a513021e31e9a0bf",
@@ -212,6 +171,3 @@ function unlockVideo(){
 
 </body>
 </html>
-EOF
-
-systemctl restart nginx
