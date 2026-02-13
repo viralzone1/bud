@@ -63,21 +63,23 @@ video{
 
 .sidebar{
     flex:1;
-}
-
-.recommendation-box{
-    background:#1a1a1a;
-    padding:15px;
-    border-radius:10px;
-    margin-top:20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+.recommendation-box{
+    background:#1a1a1a;
+    padding:10px;
+    border-radius:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .recommendation-box img{
-    width:120px; /* Tamaño de miniatura más pequeño */
-    height:90px;
+    width:100%;
+    height:90px; /* Tamaño más adecuado */
     border-radius:8px;
     margin-bottom:10px;
     object-fit:cover;
@@ -88,24 +90,26 @@ video{
     color:#e50914;
     text-decoration:none;
     font-weight:bold;
+    font-size:14px; /* Asegurando que el texto no sea tan grande */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limitar el texto a 2 líneas */
+    -webkit-box-orient: vertical;
 }
 
 .recommendations-container {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    max-height: 600px;
+    overflow-y: auto;
+    margin-right: 20px;
 }
 
 .recommendation-box {
-    scroll-snap-align: start;
-    width:120px; /* Compactar aún más las miniaturas */
-    height:150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 180px; /* Ancho adecuado para las miniaturas */
+    height: auto;
 }
 
 .telegram{
@@ -177,7 +181,7 @@ video{
 
 <div class="sidebar">
 
-<!-- Contenedor para las recomendaciones de video deslizable -->
+<!-- Contenedor para las recomendaciones de video (listado vertical) -->
 <div class="recommendations-container">
     <!-- Recomendación de video 1 -->
     <div class="recommendation-box">
@@ -290,3 +294,4 @@ function openAd() {
 
 </body>
 </html>
+
